@@ -7,18 +7,19 @@ import Projects from '../components/Projects'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
+
 export default function Page() {
-  return (
-    <div className="min-h-screen bg-ambient">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  )
+return (
+<div className="min-h-screen bg-gradient-to-br from-[#f7f7fb] via-[#f0eef8] to-[#f7f9ff] text-slate-900">
+<Navbar />
+<main>
+<Hero />
+<About />
+<Skills />
+<Projects />
+<Contact />
+</main>
+<Footer />
+</div>
+)
 }
