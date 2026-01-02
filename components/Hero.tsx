@@ -10,33 +10,33 @@ const projects = [
     id: 1,
     title: "IndahnyaKalimantanBarat",
     desc: "A dedicated POS and inventory system for local culinary businesses featuring real-time stock tracking.",
-    image: "/images/project1.jpg", // Pastikan file ini ada di folder public
-    tags: ["Laravel", "MySQL", "Tailwind"],
+    image: "/images/indahnya.jpg", // Pastikan file ini ada di folder public
+    tags: ["--", "HTML", "--"],
     category: "Web Development"
   },
   {
     id: 2,
     title: "Galley La Hall",
-    desc: "Modern e-commerce interface focusing on high-end furniture with smooth glassmorphism effects.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop", 
-    tags: ["Next.js", "Framer Motion"],
-    category: "UI/UX Design"
+    desc: "3d Game using UNITY",
+    image: "/images/galleylahall.jpg", 
+    tags: ["Unity", "C#"],
+    category: "3D"
   },
   {
     id: 3,
-    title: "Tuku Coffe",
-    desc: "Mobile-responsive dashboard for monitoring daily fitness activities and nutritional intake.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1000&auto=format&fit=crop",
-    tags: ["React Native", "Firebase"],
-    category: "Mobile App"
+    title: "--",
+    desc: "About Kalimantan",
+    image: "/images/CrimsonD.jpg",
+    tags: ["--", "HTML"],
+    category: "web"
   },
   {
     id: 4,
     title: "Crimson Down the Creek",
-    desc: "Modern e-commerce interface focusing on high-end furniture with smooth glassmorphism effects.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop", 
-    tags: ["Next.js", "Framer Motion"],
-    category: "UI/UX Design"
+    desc: "Visual Novel Game",
+    image: "/images/CrimsonD.jpg", 
+    tags: ["Python", "Renpy"],
+    category: "--"
   },
 ];
 

@@ -1,32 +1,32 @@
 export const projects = [
 {
 id: 1,
-title: "Portfolio Website",
-description: "A modern portfolio built with Next.js + Tailwind.",
-img: "/images/project1.jpg",
+title: "Catalog Dua Naga Perkasa",
+description: "Catalog website of PT Dua Naga Perkasa",
+img: "/images/nagaper.jpg",
 tech: ["Next.js","React","TailwindCSS"],
-link: "#"
+link: "https://github.com/lifkiss/PT-DuaNagaPerkasa.git"
 },
 {
 id: 2,
-title: "Machine Learning Dashboard",
-description: "Dashboard with FastAPI backend.",
-img: "/images/project2.jpg",
+title: "Galley La Hall",
+description: "3D game",
+img: "/images/galleylahall.jpg",
 tech: ["FastAPI","Python","React"],
-link: "#"
+link: "https://vinnyvv.itch.io/galley-la-halls"
 },
 {
 id: 3,
-title: "UI Components",
-description: "Reusable UI components using shadcn/ui.",
-img: "/images/project3.jpg",
+title: "Kalimantan Barat",
+description: "About West Borneo",
+img: "/images/indahnya.jpg",
 tech: ["shadcn/ui","React","TypeScript"],
-link: "#"
+link: "https://indahnyakalimantanbarat.vercel.app/"
 },
 {
 id: 4,
 title: "Crimson Down The Creek",
-description: "Reusable UI components using shadcn/ui.",
+description: "Visual Novel Game",
 img: "/images/CrimsonD.png",
 tech: ["shadcn/ui","React","TypeScript"],
 link: "https://vnjcafeumn.itch.io/crimson-down-the-creek"
