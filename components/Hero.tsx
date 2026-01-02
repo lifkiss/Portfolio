@@ -1,84 +1,248 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+
+// DATA PROJECT: Silakan tambah atau ubah di sini
+const projects = [
+  {
+    id: 1,
+    title: "IndahnyaKalimantanBarat",
+    desc: "A dedicated POS and inventory system for local culinary businesses featuring real-time stock tracking.",
+    image: "/images/project1.jpg", // Pastikan file ini ada di folder public
+    tags: ["Laravel", "MySQL", "Tailwind"],
+    category: "Web Development"
+  },
+  {
+    id: 2,
+    title: "Galley La Hall",
+    desc: "Modern e-commerce interface focusing on high-end furniture with smooth glassmorphism effects.",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop", 
+    tags: ["Next.js", "Framer Motion"],
+    category: "UI/UX Design"
+  },
+  {
+    id: 3,
+    title: "Tuku Coffe",
+    desc: "Mobile-responsive dashboard for monitoring daily fitness activities and nutritional intake.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1000&auto=format&fit=crop",
+    tags: ["React Native", "Firebase"],
+    category: "Mobile App"
+  },
+  {
+    id: 4,
+    title: "Crimson Down the Creek",
+    desc: "Modern e-commerce interface focusing on high-end furniture with smooth glassmorphism effects.",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop", 
+    tags: ["Next.js", "Framer Motion"],
+    category: "UI/UX Design"
+  },
+];
 
 export default function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // 1 untuk kanan, -1 untuk kiri
+
+  // Navigasi Slider
+  const nextSlide = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  const prevSlide = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  };
+
+  // Fitur Autoplay (5 detik)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  // Variasi Animasi Framer Motion
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? 50 : -50,
+      opacity: 0
+    })
+  };
+
   return (
-    <section className="relative overflow-hidden">
-      {/* Ambient background rings */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-500">
+      
+      {/* --- BACKGROUND AMBIENT (Kode Asli Kamu) --- */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-[-10%] top-0 w-[60vw] max-w-[900px] aspect-square rounded-full opacity-30 blur-[120px] bg-gradient-to-br from-pink-300 to-transparent animate-pulse-slow"></div>
         <div className="absolute right-[-10%] bottom-0 w-[60vw] max-w-[900px] aspect-square rounded-full opacity-25 blur-[160px] bg-gradient-to-br from-sky-200 to-transparent animate-pulse-slower"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
-        <div className="flex flex-col-reverse md:flex-row items-start md:items-center gap-10">
-          {/* LEFT: text column */}
-          <div className="w-full md:w-7/12">
-            <p className="text-sm text-slate-500 mb-3">HELLO, I'M</p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          
+          {/* LEFT COLUMN: Teks Deskripsi */}
+          <div className="md:col-span-7 space-y-6">
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-sm font-bold tracking-[0.2em] text-pink-500 uppercase"
+            >
+              Hello, I'm
+            </motion.p>
 
-            <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
-              Lifkie Lie <span className="text-slate-600">—</span>
-            </h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.9]"
+            >
+              Lifkie Lie <span className="text-slate-300 dark:text-slate-700">—</span>
+            </motion.h1>
 
-            <div className="mt-6 max-w-xl">
-              <p className="text-lg text-slate-600 dark:text-slate-300">
-                I craft modern interfaces using glassmorphism, soft gradients and subtle motion — focused on UI, animation, and frontend performance.
-              </p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="max-w-lg"
+            >
+              <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+                I'am an Informatics Student at <span className="text-slate-900 dark:text-white font-medium">Multimedia Nusantara University</span>, 2023 - 2027.
 
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a href="#projects" className="inline-flex items-center px-5 py-3 rounded-xl bg-slate-900 text-white hover:brightness-105 shadow-md">
-                  See projects
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a href="#projects" className="group relative px-7 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl">
+                  <span className="relative z-10">See projects</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
-                <a href="#contact" className="inline-flex items-center px-5 py-3 rounded-xl bg-slate-900 text-white hover:brightness-105 shadow-md">
+                <a href="#contact" className="px-7 py-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
                   Contact me
                 </a>
               </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT COLUMN: Glass Card Slider */}
+          <div className="md:col-span-5 flex flex-col items-center justify-center gap-8">
+            <div className="relative group w-full max-w-[450px]">
+              
+              {/* Tombol Navigasi Custom */}
+              <button 
+                onClick={prevSlide}
+                className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-90 text-slate-800 dark:text-white"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <button 
+                onClick={nextSlide}
+                className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-90 text-slate-800 dark:text-white"
+              >
+                <ChevronRight size={20} />
+              </button>
+
+              {/* Main Slider Content */}
+              <div className="relative h-[520px] w-full">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={currentIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.4, ease: "anticipate" }}
+                    className="absolute inset-0 glass-morphism p-6 rounded-[2.5rem] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] flex flex-col"
+                  >
+                    {/* Image Area */}
+                    <div className="relative h-64 w-full rounded-[1.8rem] overflow-hidden shadow-inner bg-slate-200 dark:bg-slate-800">
+                      <div className="absolute top-4 right-4 z-10 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-[10px] font-black text-pink-600 dark:text-pink-400 uppercase tracking-widest border border-white/20">
+                        {projects[currentIndex].category}
+                      </div>
+                      <img 
+                        src={projects[currentIndex].image}
+                        alt={projects[currentIndex].title}
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                      />
+                    </div>
+
+                    {/* Text Area */}
+                    <div className="mt-8 px-2 flex-grow flex flex-col">
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                        {projects[currentIndex].title}
+                      </h3>
+                      <p className="mt-2 text-slate-500 dark:text-slate-400 text-sm leading-relaxed line-clamp-2 italic">
+                        "{projects[currentIndex].desc}"
+                      </p>
+
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {projects[currentIndex].tags.map((tag) => (
+                          <span key={tag} className="px-3 py-1 rounded-lg bg-white/50 dark:bg-white/5 border border-white/40 dark:border-white/10 text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <button className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                        View Case Study <ExternalLink size={14} />
+                      </button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Pagination UI */}
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex gap-2">
+                {projects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setDirection(i > currentIndex ? 1 : -1);
+                      setCurrentIndex(i);
+                    }}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      currentIndex === i 
+                      ? "w-12 bg-pink-500 shadow-[0_0_12px_rgba(236,72,153,0.5)]" 
+                      : "w-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
+                    }`}
+                  />
+                ))}
+              </div>
+              <p className="text-[10px] font-black text-slate-400 dark:text-slate-600 uppercase tracking-[0.3em]">
+                Project {currentIndex + 1} <span className="text-slate-200 dark:text-slate-800 mx-2">|</span> {projects.length}
+              </p>
             </div>
           </div>
 
-          {/* RIGHT: preview glass card */}
-          <div className="w-full md:w-5/12 flex justify-end">
-            <motion.div
-              initial={{ y: 12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="glass p-6 rounded-2xl min-w-[260px] md:min-w-[340px] shadow-lg border border-white/30"
-            >
-              
-              {/* --- BAGIAN 1: GAMBAR --- */}
-              {/* Pastikan gambar ada di folder public */}
-              <div className="h-[200px] md:h-[260px] w-full rounded-xl overflow-hidden bg-gray-800">
-                 <img 
-                    src="/nama-file-gambar-kamu.jpg"  
-                    alt="Preview Project Saya"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                 />
-              </div>
-
-              <div className="mt-4">
-                {/* --- BAGIAN 2: JUDUL --- */}
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-                    Nama Aplikasi Kamu
-                </h3>
-                
-                {/* --- BAGIAN 3: DESKRIPSI --- */}
-                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                    Jelaskan fitur utama aplikasimu di sini. Misalnya: Aplikasi kasir berbasis web untuk UMKM.
-                </p>
-
-                {/* --- BAGIAN 4: TAGS --- */}
-                <div className="mt-3 flex gap-2 flex-wrap">
-                  <span className="text-xs px-2 py-1 rounded-full bg-white/10">Laravel</span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-white/10">MySQL</span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-white/10">Bootstrap</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .glass-morphism {
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.4; transform: scale(1.05); }
+        }
+        @keyframes pulse-slower {
+          0%, 100% { opacity: 0.2; transform: scale(1); }
+          50% { opacity: 0.3; transform: scale(1.1); }
+        }
+        .animate-pulse-slow { animation: pulse-slow 8s infinite ease-in-out; }
+        .animate-pulse-slower { animation: pulse-slower 12s infinite ease-in-out; }
+      `}</style>
     </section>
   );
 }

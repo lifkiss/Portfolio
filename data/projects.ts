@@ -22,5 +22,13 @@ description: "Reusable UI components using shadcn/ui.",
 img: "/images/project3.jpg",
 tech: ["shadcn/ui","React","TypeScript"],
 link: "#"
+},
+{
+id: 4,
+title: "Crimson Down The Creek",
+description: "Reusable UI components using shadcn/ui.",
+img: "/images/CrimsonD.png",
+tech: ["shadcn/ui","React","TypeScript"],
+link: "https://vnjcafeumn.itch.io/crimson-down-the-creek"
 }
 ]

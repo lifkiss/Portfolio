@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Glassmorphism",
-  description: "Modern portfolio with glassmorphism & animations",
+  title: "I'M — Lifkie",
+  description: "PORTFOLIO",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
