@@ -117,7 +117,8 @@ export default function Hero() {
               className="max-w-lg"
             >
               <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                I'am an Informatics Student at <span className="text-slate-900 dark:text-white font-medium">Multimedia Nusantara University</span>, 2023 - 2027.
+                A STUDENT OF <span className="text-slate-900 dark:text-white font-medium">MULTIMEDIA NUSANTARA UNIVERSITY</span>, 2023 - 2027.
+              </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
                 <a href="#projects" className="group relative px-7 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl">
