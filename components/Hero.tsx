@@ -65,19 +65,20 @@ export default function Hero() {
 
   // Variasi Animasi Framer Motion
   const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      x: direction < 0 ? 50 : -50,
-      opacity: 0
-    })
-  };
+  enter: (direction: number) => ({
+    x: direction > 0 ? 50 : -50,
+    opacity: 0
+  }),
+  center: {
+    zindex: 1, // Tambahkan ini biar transisi antar slide aman
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 50 : -50,
+    opacity: 0
+  })
+};
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-500">
