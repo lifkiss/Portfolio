@@ -212,7 +212,7 @@ export default function Hero() {
                         rel="noopener noreferrer"
                         className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:brightness-110 transition-all flex items-center justify-center gap-2"
                       >
-                        View Case Study <ExternalLink size={14} />
+                        View Project <ExternalLink size={14} />
                       </a>
                       
                     </div>
