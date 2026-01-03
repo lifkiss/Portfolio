@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
-// --- 1. DATA PROJECT DIPERBARUI (Ditambahkan field 'link') ---
+// --- DATA PROJECT ---
 const projects = [
   {
     id: 1,
     title: "Catalog Dua Naga Perkasa",
     desc: "Catalog website of PT Dua Naga Perkasa",
-    image: "/images/nagaper.jpg", // Pastikan gambar ini ada di folder public/images
+    image: "/images/nagaper.jpg",
     tags: ["Next.js", "React", "TailwindCSS"],
     category: "Web Development",
-    link: "https://github.com/lifkiss/PT-DuaNagaPerkasa.git" // Link ditambahkan
+    link: "https://github.com/lifkiss/PT-DuaNagaPerkasa.git"
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const projects = [
     image: "/images/galleylahall.jpg",
     tags: ["FastAPI", "Python", "React"],
     category: "Game Dev",
-    link: "https://vinnyvv.itch.io/galley-la-halls" // Link ditambahkan
+    link: "https://vinnyvv.itch.io/galley-la-halls"
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const projects = [
     image: "/images/indahnya.jpg",
     tags: ["shadcn/ui", "React", "TypeScript"],
     category: "Web Development",
-    link: "https://indahnyakalimantanbarat.vercel.app/" // Link ditambahkan
+    link: "https://indahnyakalimantanbarat.vercel.app/"
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const projects = [
     image: "/images/CrimsonD.png",
     tags: ["Renpy", "Python"],
     category: "Game Dev",
-    link: "https://vnjcafeumn.itch.io/crimson-down-the-creek" // Link ditambahkan
+    link: "https://vnjcafeumn.itch.io/crimson-down-the-creek"
   },
 ];
 
@@ -65,8 +65,9 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
+  // --- PERBAIKAN DISINI (Menambahkan : number) ---
   const slideVariants = {
-    enter: (direction) => ({
+    enter: (direction: number) => ({
       x: direction > 0 ? 50 : -50,
       opacity: 0
     }),
@@ -75,7 +76,7 @@ export default function Hero() {
       x: 0,
       opacity: 1
     },
-    exit: (direction) => ({
+    exit: (direction: number) => ({
       x: direction < 0 ? 50 : -50,
       opacity: 0
     })
@@ -123,10 +124,19 @@ export default function Hero() {
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
-                <a href="#projects" className="group relative px-7 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl">
-                  <span className="relative z-10">See projects</span>
+                {/* UPDATE TOMBOL KIRI (SESUAI REQUEST SEBELUMNYA):
+                   Sekarang tombol ini juga membuka link project di tab baru.
+                */}
+                <a 
+                  href={projects[currentIndex].link} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative px-7 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl"
+                >
+                  <span className="relative z-10">Visit Site</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-rose-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
+                
                 <a href="#contact" className="px-7 py-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all">
                   Contact me
                 </a>
@@ -195,14 +205,14 @@ export default function Hero() {
                         ))}
                       </div>
 
-                      {/* --- 2. BUTTON DIUBAH MENJADI LINK (<a>) --- */}
+                      {/* BUTTON KANAN: View Case Study */}
                       <a 
                         href={projects[currentIndex].link} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:brightness-110 transition-all flex items-center justify-center gap-2"
                       >
-                        View <ExternalLink size={14} />
+                        View Case Study <ExternalLink size={14} />
                       </a>
                       
                     </div>
