@@ -1,6 +1,5 @@
 import ProjectCard from '../../components/ProjectCard'
-import { projects } from '../../data/projects'
-import { projects } from '../../data/projects'
+import { projects } from '../../data/projects' 
 
 export default function ProjectsPage() {
   return (
@@ -9,9 +8,9 @@ export default function ProjectsPage() {
         <h1 className="text-4xl font-bold mb-6">Projects</h1>
 
         <div className="grid md:grid-cols-2 gap-6">
-         {projects.map(p => (
-  <ProjectCard key={p.id} project={p} />
-))}
+          {projects.map(p => (
+            <ProjectCard key={p.id} project={p} />
+          ))}
         </div>
       </div>
     </div>
