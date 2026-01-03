@@ -26,7 +26,7 @@ const projects = [
     id: 3,
     title: "--",
     desc: "About Kalimantan",
-    image: "/images/CrimsonD.jpg",
+    image: "/images/CrimsonD.png",
     tags: ["--", "HTML"],
     category: "web"
   },
@@ -34,7 +34,7 @@ const projects = [
     id: 4,
     title: "Crimson Down the Creek",
     desc: "Visual Novel Game",
-    image: "/images/CrimsonD.jpg", 
+    image: "/images/CrimsonD.png", 
     tags: ["Python", "Renpy"],
     category: "--"
   },

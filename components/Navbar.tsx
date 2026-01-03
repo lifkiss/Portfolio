@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ export default function Navbar() {
       },
       {
         threshold: 0.3,
-        rootMargin: "-100px 0px -30% 0px", 
+        rootMargin: "-100px 0px -30% 0px",
       }
     );
 
@@ -60,30 +60,39 @@ export default function Navbar() {
 
           <a
             href="#about"
-            className={`${active === "about" ? "text-blue-500 font-semibold" : "hover:underline"}`}
+            className={active === "about"
+              ? "text-blue-500 font-semibold"
+              : "hover:underline"}
           >
             About
           </a>
 
+          {/* SKILLS → IKUT ABOUT */}
           <a
-            href="#skills"
-            className={`${active === "skills" ? "text-blue-500 font-semibold" : "hover:underline"}`}
+            href="#about"
+            className={active === "about"
+              ? "text-blue-500 font-semibold"
+              : "hover:underline"}
           >
             Skills
           </a>
 
           <a
             href="#projects"
-            className={`${active === "projects" ? "text-blue-500 font-semibold" : "hover:underline"}`}
+            className={active === "projects"
+              ? "text-blue-500 font-semibold"
+              : "hover:underline"}
           >
             Projects
           </a>
 
           <a
             href="#contact"
-             className={`${active === "contact" ? "text-blue-500 font-semibold" : "hover:underline"}`}
-            >
-             Contact
+            className={active === "contact"
+              ? "text-blue-500 font-semibold"
+              : "hover:underline"}
+          >
+            Contact
           </a>
 
           {/* Theme Toggle */}
