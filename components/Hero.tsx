@@ -4,47 +4,50 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
-// DATA PROJECT: Silakan tambah atau ubah di sini
+// --- 1. DATA PROJECT DIPERBARUI (Ditambahkan field 'link') ---
 const projects = [
   {
     id: 1,
-    title: "IndahnyaKalimantanBarat",
-    desc: "A dedicated POS and inventory system for local culinary businesses featuring real-time stock tracking.",
-    image: "/images/indahnya.jpg", // Pastikan file ini ada di folder public
-    tags: ["--", "HTML", "--"],
-    category: "Web Development"
+    title: "Catalog Dua Naga Perkasa",
+    desc: "Catalog website of PT Dua Naga Perkasa",
+    image: "/images/nagaper.jpg", // Pastikan gambar ini ada di folder public/images
+    tags: ["Next.js", "React", "TailwindCSS"],
+    category: "Web Development",
+    link: "https://github.com/lifkiss/PT-DuaNagaPerkasa.git" // Link ditambahkan
   },
   {
     id: 2,
     title: "Galley La Hall",
-    desc: "3d Game using UNITY",
-    image: "/images/galleylahall.jpg", 
-    tags: ["Unity", "C#"],
-    category: "3D"
+    desc: "3D Game using UNITY",
+    image: "/images/galleylahall.jpg",
+    tags: ["FastAPI", "Python", "React"],
+    category: "Game Dev",
+    link: "https://vinnyvv.itch.io/galley-la-halls" // Link ditambahkan
   },
   {
     id: 3,
-    title: "--",
-    desc: "About Kalimantan",
-    image: "/images/CrimsonD.png",
-    tags: ["--", "HTML"],
-    category: "web"
+    title: "Kalimantan Barat",
+    desc: "About West Borneo",
+    image: "/images/indahnya.jpg",
+    tags: ["shadcn/ui", "React", "TypeScript"],
+    category: "Web Development",
+    link: "https://indahnyakalimantanbarat.vercel.app/" // Link ditambahkan
   },
   {
     id: 4,
     title: "Crimson Down the Creek",
     desc: "Visual Novel Game",
-    image: "/images/CrimsonD.png", 
-    tags: ["Python", "Renpy"],
-    category: "--"
+    image: "/images/CrimsonD.png",
+    tags: ["Renpy", "Python"],
+    category: "Game Dev",
+    link: "https://vnjcafeumn.itch.io/crimson-down-the-creek" // Link ditambahkan
   },
 ];
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // 1 untuk kanan, -1 untuk kiri
+  const [direction, setDirection] = useState(0);
 
-  // Navigasi Slider
   const nextSlide = useCallback(() => {
     setDirection(1);
     setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
@@ -55,7 +58,6 @@ export default function Hero() {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
 
-  // Fitur Autoplay (5 detik)
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
@@ -63,27 +65,26 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  // Variasi Animasi Framer Motion
   const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 50 : -50,
-    opacity: 0
-  }),
-  center: {
-    zindex: 1, // Tambahkan ini biar transisi antar slide aman
-    x: 0,
-    opacity: 1
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? 50 : -50,
-    opacity: 0
-  })
-};
+    enter: (direction) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? 50 : -50,
+      opacity: 0
+    })
+  };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-500">
       
-      {/* --- BACKGROUND AMBIENT (Kode Asli Kamu) --- */}
+      {/* Background Ambient */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-[-10%] top-0 w-[60vw] max-w-[900px] aspect-square rounded-full opacity-30 blur-[120px] bg-gradient-to-br from-pink-300 to-transparent animate-pulse-slow"></div>
         <div className="absolute right-[-10%] bottom-0 w-[60vw] max-w-[900px] aspect-square rounded-full opacity-25 blur-[160px] bg-gradient-to-br from-sky-200 to-transparent animate-pulse-slower"></div>
@@ -92,7 +93,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           
-          {/* LEFT COLUMN: Teks Deskripsi */}
+          {/* LEFT COLUMN */}
           <div className="md:col-span-7 space-y-6">
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
@@ -133,11 +134,11 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN: Glass Card Slider */}
+          {/* RIGHT COLUMN: Slider */}
           <div className="md:col-span-5 flex flex-col items-center justify-center gap-8">
             <div className="relative group w-full max-w-[450px]">
               
-              {/* Tombol Navigasi Custom */}
+              {/* Nav Buttons */}
               <button 
                 onClick={prevSlide}
                 className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-90 text-slate-800 dark:text-white"
@@ -152,7 +153,7 @@ export default function Hero() {
                 <ChevronRight size={20} />
               </button>
 
-              {/* Main Slider Content */}
+              {/* Card Content */}
               <div className="relative h-[520px] w-full">
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
@@ -194,9 +195,16 @@ export default function Hero() {
                         ))}
                       </div>
 
-                      <button className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:brightness-110 transition-all flex items-center justify-center gap-2">
-                        View Case Study <ExternalLink size={14} />
-                      </button>
+                      {/* --- 2. BUTTON DIUBAH MENJADI LINK (<a>) --- */}
+                      <a 
+                        href={projects[currentIndex].link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                      >
+                        View <ExternalLink size={14} />
+                      </a>
+                      
                     </div>
                   </motion.div>
                 </AnimatePresence>

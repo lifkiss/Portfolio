@@ -6,7 +6,7 @@ const skills = [
   'React',
   'Next.js',
   'Tailwind',
-  'TypeScript',
+  'TypeScr',
   'Figma',
   'Framer Motion',
 ]

@@ -17,7 +17,7 @@ export default function About() {
           {/* 1. AVATAR */}
           <div className="flex items-center gap-4">
             <img
-              src="mukagw.png"
+              src="mukagw.jpeg"
               alt="avatar"
               className="w-28 h-28 rounded-full object-cover border border-white/20"
             />
