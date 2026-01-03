@@ -2,18 +2,15 @@
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
 
-const skills: string[] = [
-  'React',
-  'Next.js',
-  'Java',
-  'PHP',
-  'Kotlin',
-  'Tailwind',
-  'TypeScript',
-  'REST API',
-  'Laravel',
-  'HTML',
-  'Firebase Authentication',
+const toolsList: string[] = [
+  'Git',
+  'GitHub',
+  'Vercel',
+  'Firebase',
+  'MySQL',
+  'Postman',
+  'VS Code',
+  'Android Studio',
 ]
 
 const container: Variants = {
@@ -29,21 +26,21 @@ const item: Variants = {
   show: { opacity: 1, y: 0 },
 }
 
-export default function Skills() {
+export default function Tools() {
   return (
     <div>
-      <h4 className="text-sm font-semibold mb-2">Skills</h4>
+      <h4 className="text-sm font-semibold mb-2">Tools & Platforms</h4>
 
       <motion.div
         variants={container}
         initial="hidden"
-        // PERBAIKAN BUG: Ganti whileInView jadi animate agar tidak bentrok dengan parent
-        animate="show" 
+        // PERBAIKAN BUG: Ganti whileInView jadi animate
+        animate="show"
         className="flex flex-wrap gap-2"
       >
-        {skills.map((s) => (
+        {toolsList.map((tool) => (
           <motion.span
-            key={s}
+            key={tool}
             variants={item}
             className="
               px-2.5 py-1
@@ -54,7 +51,7 @@ export default function Skills() {
               text-slate-600
             "
           >
-            {s}
+            {tool}
           </motion.span>
         ))}
       </motion.div>

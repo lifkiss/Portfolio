@@ -47,7 +47,7 @@ export default function Hero() {
   const project = projects[currentIndex];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-slate-950 transition-colors duration-500">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent transition-colors duration-500">
       
       {/* Background Glow */}
       <div className="absolute inset-0 -z-10">
@@ -93,12 +93,12 @@ export default function Hero() {
 
             <div className="mt-10 flex gap-4">
               <a
-                href={project.link}
+                href="https://github.com/lifkiss"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-7 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold shadow-xl hover:scale-105 active:scale-95 transition"
               >
-                Project
+                GitHub
               </a>
 
               <a

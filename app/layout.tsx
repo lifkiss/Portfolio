@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import React from "react";
+import { Providers } from "./providers"; // Import file yang baru dibuat
 
 export const metadata: Metadata = {
   title: "I'M — Lifkie",
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Jangan pakai background di sini */}
       <body className="antialiased transition-colors duration-500">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

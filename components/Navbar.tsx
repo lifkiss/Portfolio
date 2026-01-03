@@ -1,46 +1,22 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes"; // <--- Import wajib ini
 
 export default function Navbar() {
-  const [active, setActive] = useState("");
-  const [theme, setTheme] = useState("light");
+  // Ambil fungsi dari next-themes
+  const { theme, setTheme } = useTheme();
+  
+  // State untuk memastikan component sudah dimuat (mencegah error hydration)
+  const [mounted, setMounted] = useState(false);
 
-  // ACTIVE NAV DETECTOR
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "-100px 0px -30% 0px",
-      }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
+    setMounted(true);
   }, []);
 
-  // THEME LOADER
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") || "light";
-    setTheme(saved);
-    document.documentElement.classList.toggle("dark", saved === "dark");
-  }, []);
-
-  // TOGGLE THEME
+  // Fungsi toggle yang benar (menggunakan library)
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -49,58 +25,42 @@ export default function Navbar() {
 
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full gradient-ring flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-full gradient-ring flex items-center justify-center font-bold text-slate-900 dark:text-white">
             L
           </div>
-          <div className="text-sm font-semibold">Lifkie Lie</div>
+          <div className="text-sm font-semibold text-slate-900 dark:text-white">Lifkie Lie</div>
         </div>
 
-        {/* Nav */}
-        <nav className="hidden md:flex gap-6 items-center text-sm">
+        {/* Nav Link */}
+        <nav className="hidden md:flex gap-6 items-center text-sm font-medium text-slate-700 dark:text-slate-200">
 
-          <a
-            href="#about"
-            className={active === "about"
-              ? "text-blue-500 font-semibold"
-              : "hover:underline"}
-          >
+          <a href="#about" className="hover:text-blue-500 hover:scale-105 transition-all duration-200">
             About
           </a>
 
-          {/* SKILLS → IKUT ABOUT */}
-          <a
-            href="#about"
-            className={active === "about"
-              ? "text-blue-500 font-semibold"
-              : "hover:underline"}
-          >
+          <a href="#skills" className="hover:text-blue-500 hover:scale-105 transition-all duration-200">
             Skills
           </a>
 
-          <a
-            href="#projects"
-            className={active === "projects"
-              ? "text-blue-500 font-semibold"
-              : "hover:underline"}
-          >
+          <a href="#projects" className="hover:text-blue-500 hover:scale-105 transition-all duration-200">
             Projects
           </a>
 
-          <a
-            href="#contact"
-            className={active === "contact"
-              ? "text-blue-500 font-semibold"
-              : "hover:underline"}
-          >
+          <a href="#contact" className="hover:text-blue-500 hover:scale-105 transition-all duration-200">
             Contact
           </a>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle — Fixed */}
           <button
             onClick={toggleTheme}
-            className="ml-4 px-3 py-1 rounded-full glass border border-white/20 hover:brightness-110 transition-all"
+            className="ml-4 px-3 py-1 rounded-full glass border border-white/20 hover:brightness-110 transition-all flex items-center gap-2 text-slate-900 dark:text-white"
           >
-            {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+            {/* Cek mounted dulu agar icon tidak berubah mendadak */}
+            {mounted && theme === "dark" ? (
+              <>☀️ Light</> // Kalau sedang Dark, tawarkan Light
+            ) : (
+              <>🌙 Dark</>  // Kalau sedang Light (atau loading), tawarkan Dark
+            )}
           </button>
         </nav>
       </div>

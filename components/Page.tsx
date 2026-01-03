@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 
 export default function Page() {
 return (
-<div className="min-h-screen bg-gradient-to-br from-[#f7f7fb] via-[#f0eef8] to-[#f7f9ff] text-slate-900">
+<div className="min-h-screen bg-gradient-to-br from-[#faf5fb] via-[#f2e8f3] to-[#f8f7ff] text-slate-900">
 <Navbar />
 <main>
 <Hero />

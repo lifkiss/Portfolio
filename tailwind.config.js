@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: "class", // Ini kuncinya
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,15 +15,6 @@ module.exports = {
         },
       },
     },
-  },
-  plugins: [],
-};
-
-module.exports = {
-  darkMode: "class",
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
   },
   plugins: [],
 };

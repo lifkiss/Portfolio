@@ -2,6 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Skills from './Skills'
+import Tools from './Tools'
 
 export default function About() {
   return (
@@ -16,9 +17,10 @@ export default function About() {
           
           {/* 1. AVATAR */}
           <div className="flex items-center gap-4">
+            {/* Pastikan path gambar sesuai */}
             <img
-              src="mukagw.jpeg"
-              alt="avatar"
+              src="/mukagw.jpeg"
+              alt="Avatar Lifkie Lie"
               className="w-28 h-28 rounded-full object-cover border border-white/20"
             />
             <div className="flex flex-col items-start gap-2">
@@ -37,27 +39,35 @@ export default function About() {
           <div>
             <h2 className="text-3xl font-bold mb-2">About me</h2>
             <p className="text-slate-600">
-              I am an Informatics student. backend developer.
+              I am an Informatics student at Universitas Multimedia Nusantara with a strong interest in Technology. 
+              My journey involves working on diverse projects, 
+              from building full-stack websites to creating Android mobile applications. 
+              I enjoy the process of turning requirements into functional software. 
+              I have experience working with clients from students creativity program, to build management systems and have collaborated with teams to create engaging applications. 
+              Currently, I am focused on expanding my technical skills and solving real-world problems through technology.
             </p>
           </div>
 
-          {/* 3. INTERESTS + SKILLS (SEJAJAR) */}
+          {/* 3. GRID LAYOUT */}
           <div className="w-full border-t border-slate-200/60 pt-6 mt-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-              {/* INTERESTS */}
+              {/* KOLOM KIRI: INTERESTS */}
               <div>
                 <h4 className="text-sm font-semibold mb-2">Interests</h4>
                 <ul className="text-slate-600 list-disc pl-5 space-y-1">
                   <li>Full-Stack Developer</li>
                   <li>Android Developer</li>
+                  <li>Software Developer</li>
                   <li>Machine Learning</li>
+                  <li>Backend Engineer</li>
                 </ul>
               </div>
 
-              {/* SKILLS */}
-              <div>
+              {/* KOLOM KANAN: SKILLS & TOOLS */}
+              <div className="flex flex-col gap-6"> 
                 <Skills />
+                <Tools />
               </div>
 
             </div>
