@@ -9,10 +9,9 @@ export default function ProjectsPage() {
         <h1 className="text-4xl font-bold mb-6">Projects</h1>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map(p => (
-            <ProjectCard key={p.id} project={p} />
-            console.log('PROJECTS FROM DATA:', projects)
-          ))}
+         {projects.map(p => (
+  <ProjectCard key={p.id} project={p} />
+))}
         </div>
       </div>
     </div>
