@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import { projects } from "@/data/projects"; // 🔑 SATU-SATUNYA SUMBER DATA
+import { projects } from "@/data/projects";
 
 export default function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [direction, setDirection] = useState<number>(0);
 
   const nextSlide = useCallback(() => {
     setDirection(1);
@@ -24,23 +24,44 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
 
-  const slideVariants = {
+    return () => clearInterval(timer);
+  }, [nextSlide, currentIndex]);
+
+  const modernSlideVariants: Variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
+      x: direction > 0 ? '120%' : '-120%',
+      scale: 0.85,
       opacity: 0,
+      zIndex: 0,
+      filter: "blur(10px)",
     }),
     center: {
-      zIndex: 1,
       x: 0,
+      scale: 1,
       opacity: 1,
+      zIndex: 1,
+      filter: "blur(0px)",
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 25 },
+        scale: { type: "spring", stiffness: 350, damping: 30 },
+        opacity: { duration: 0.4 },
+        filter: { duration: 0.4 },
+      },
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 50 : -50,
+      x: direction < 0 ? '80%' : '-80%',
+      scale: 0.9,
       opacity: 0,
+      zIndex: 0,
+      filter: "blur(10px)",
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1],
+      },
     }),
   };
 
@@ -58,7 +79,7 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           
-          {/* LEFT */}
+          {/* KIRI */}
           <div className="md:col-span-7 space-y-6">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -110,41 +131,41 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* KANAN (SLIDER) */}
           <div className="md:col-span-5 flex flex-col items-center gap-8">
-            <div className="relative group w-full max-w-[450px]">
+            <div className="relative group w-full max-w-[450px] perspective-[1000px]">
 
-              {/* NAV */}
+              {/* NAVIGASI KIRI */}
               <button
                 onClick={prevSlide}
-                className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border shadow-xl opacity-0 group-hover:opacity-100 transition"
+                className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border shadow-xl transition hover:bg-white dark:hover:bg-slate-800 hover:scale-110 active:scale-95"
               >
-                <ChevronLeft />
+                <ChevronLeft className="text-slate-900 dark:text-white" />
               </button>
 
+              {/* NAVIGASI KANAN */}
               <button
                 onClick={nextSlide}
-                className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border shadow-xl opacity-0 group-hover:opacity-100 transition"
+                className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border shadow-xl transition hover:bg-white dark:hover:bg-slate-800 hover:scale-110 active:scale-95"
               >
-                <ChevronRight />
+                <ChevronRight className="text-slate-900 dark:text-white" />
               </button>
 
-              {/* CARD */}
+              {/* CARD CONTAINER */}
               <div className="relative h-[520px] w-full">
-                <AnimatePresence mode="wait" custom={direction}>
+                <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
                     key={project.id}
                     custom={direction}
-                    variants={slideVariants}
+                    variants={modernSlideVariants}
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.4, ease: "anticipate" }}
-                    className="absolute inset-0 p-6 rounded-[2.5rem] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border shadow-2xl flex flex-col"
+                    className="absolute inset-0 p-6 rounded-[2.5rem] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl border-2 border-white/30 dark:border-white/10 shadow-2xl flex flex-col origin-center will-change-transform"
                   >
-                    {/* IMAGE */}
-                    <div className="relative h-64 rounded-[1.8rem] overflow-hidden bg-slate-200 dark:bg-slate-800">
-                      <div className="absolute top-4 right-4 z-10 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 text-[10px] font-black text-pink-500 uppercase tracking-widest">
+                    {/* GAMBAR */}
+                    <div className="relative h-64 rounded-[1.8rem] overflow-hidden bg-slate-200 dark:bg-slate-800 shadow-sm">
+                      <div className="absolute top-4 right-4 z-10 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 text-[10px] font-black text-pink-500 uppercase tracking-widest backdrop-blur-md">
                         PROJECT
                       </div>
                       <img
@@ -154,13 +175,13 @@ export default function Hero() {
                       />
                     </div>
 
-                    {/* TEXT */}
+                    {/* KONTEN TEKS */}
                     <div className="mt-8 px-2 flex flex-col flex-grow">
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight">
                         {project.title}
                       </h3>
 
-                      <p className="mt-2 text-slate-500 dark:text-slate-400 text-sm italic line-clamp-2">
+                      <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm italic line-clamp-2 font-medium">
                         "{project.description}"
                       </p>
 
@@ -168,7 +189,7 @@ export default function Hero() {
                         {project.tech.map((t) => (
                           <span
                             key={t}
-                            className="px-3 py-1 rounded-lg bg-white/50 dark:bg-white/5 border text-[10px] font-bold uppercase"
+                            className="text-xs px-3 py-1 font-medium rounded-full border border-white/10 bg-white/5 text-slate-600 dark:text-slate-300 backdrop-blur-md"
                           >
                             {t}
                           </span>
@@ -179,9 +200,9 @@ export default function Hero() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2"
+                        className="mt-auto w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-[0_10px_20px_-10px_rgba(236,72,153,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(236,72,153,0.6)] hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                       >
-                        View Project <ExternalLink size={14} />
+                        View Project <ExternalLink size={14} strokeWidth={3} />
                       </a>
                     </div>
                   </motion.div>
@@ -189,9 +210,10 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* PAGINATION */}
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex gap-2">
+            {/* PAGINATION DOTS & COUNTER */}
+            <div className="flex flex-col items-center gap-3 mt-6">
+              {/* Dots */}
+              <div className="flex gap-2 p-2 rounded-full bg-white/20 dark:bg-slate-900/20 backdrop-blur-lg">
                 {projects.map((_, i) => (
                   <button
                     key={i}
@@ -199,18 +221,21 @@ export default function Hero() {
                       setDirection(i > currentIndex ? 1 : -1);
                       setCurrentIndex(i);
                     }}
-                    className={`h-1.5 rounded-full transition-all ${
+                    className={`h-2 rounded-full transition-all duration-500 ${
                       currentIndex === i
-                        ? "w-12 bg-pink-500"
-                        : "w-2 bg-slate-300 dark:bg-slate-700"
+                        ? "w-8 bg-gradient-to-r from-pink-500 to-rose-500 shadow-sm"
+                        : "w-2 bg-slate-300/50 dark:bg-slate-600/50 hover:bg-pink-300"
                     }`}
                   />
                 ))}
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+
+              {/* TEKS PROJECT ID (BARU DITAMBAHKAN) */}
+              <p className="text-[10px] font-black tracking-[0.3em] text-slate-400 dark:text-slate-500 uppercase">
                 Project {currentIndex + 1} | {projects.length}
               </p>
             </div>
+
           </div>
         </div>
       </div>
@@ -226,6 +251,10 @@ export default function Hero() {
         }
         .animate-pulse-slow { animation: pulse-slow 8s infinite ease-in-out; }
         .animate-pulse-slower { animation: pulse-slower 12s infinite ease-in-out; }
+        
+        .perspective-[1000px] {
+          perspective: 1000px;
+        }
       `}</style>
     </section>
   );

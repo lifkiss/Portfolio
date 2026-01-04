@@ -28,7 +28,7 @@ export default function Navbar() {
           <div className="w-10 h-10 rounded-full gradient-ring flex items-center justify-center font-bold text-slate-900 dark:text-white">
             L
           </div>
-          <div className="text-sm font-semibold text-slate-900 dark:text-white">Lifkie Lie</div>
+          <div className="text-sm font-semibold text-slate-900 dark:text-white">Hello</div>
         </div>
 
         {/* Nav Link */}

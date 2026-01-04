@@ -17,7 +17,6 @@ export default function About() {
           
           {/* 1. AVATAR */}
           <div className="flex items-center gap-4">
-            {/* Pastikan path gambar sesuai */}
             <img
               src="/mukagw.jpeg"
               alt="Avatar Lifkie Lie"
@@ -25,51 +24,52 @@ export default function About() {
             />
             <div className="flex flex-col items-start gap-2">
               <div className="text-sm text-slate-600">Based in Indonesia</div>
+              
+              {/* TOMBOL DOWNLOAD RESUME */}
               <a
                 href="/Lifkie-Lie-Resume.pdf"
                 download
-                className="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors shadow-sm"
+                className="
+                  /* BENTUK & UKURAN (TETAP KECIL & KOTAK SEPERTI ASLINYA) */
+                  px-4 py-2 
+                  rounded-lg 
+                  text-sm
+                  font-bold
+                  border-2
+                  transition-colors
+
+                  /* WARNA (DIAMBIL PERSIS DARI CONTACT ME) */
+                  /* Light Mode */
+                  border-slate-200 
+                  text-slate-700 
+                  hover:bg-slate-50 
+                  
+                  /* Dark Mode (Ini yang kemarin kurang, makanya warnanya beda) */
+                  dark:border-slate-800 
+                  dark:text-slate-300 
+                  dark:hover:bg-slate-900
+                "
               >
                 Download Resume
               </a>
             </div>
           </div>
 
-          {/* 2. ABOUT ME */}
+          {/* 2. ABOUT ME - Font tetap besar (1.5x) */}
           <div>
             <h2 className="text-3xl font-bold mb-2">About me</h2>
-            <p className="text-slate-600">
-              I am an Informatics student at Universitas Multimedia Nusantara with a strong interest in Technology. 
-              My journey involves working on diverse projects, 
-              from building full-stack websites to creating Android mobile applications. 
-              I enjoy the process of turning requirements into functional software. 
-              I have experience working with clients from students creativity program, to build management systems and have collaborated with teams to create engaging applications. 
-              Currently, I am focused on expanding my technical skills and solving real-world problems through technology.
+            <p className="text-slate-600 text-lg leading-relaxed">
+             Informatics student at Universitas Multimedia Nusantara with a strong interest in full stack, backend, and Android development. 
+            Experienced in building web and mobile applications and collaborating on real world projects. 
+             Passionate about turning ideas into functional and scalable software.
             </p>
           </div>
 
-          {/* 3. GRID LAYOUT */}
+          {/* 3. LAYOUT (SKILLS & TOOLS) */}
           <div className="w-full border-t border-slate-200/60 pt-6 mt-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-              {/* KOLOM KIRI: INTERESTS */}
-              <div>
-                <h4 className="text-sm font-semibold mb-2">Interests</h4>
-                <ul className="text-slate-600 list-disc pl-5 space-y-1">
-                  <li>Full-Stack Developer</li>
-                  <li>Android Developer</li>
-                  <li>Software Developer</li>
-                  <li>Machine Learning</li>
-                  <li>Backend Engineer</li>
-                </ul>
-              </div>
-
-              {/* KOLOM KANAN: SKILLS & TOOLS */}
-              <div className="flex flex-col gap-6"> 
-                <Skills />
-                <Tools />
-              </div>
-
+            <div className="flex flex-col gap-8 w-full"> 
+              <Skills />
+              <Tools />
             </div>
           </div>
 

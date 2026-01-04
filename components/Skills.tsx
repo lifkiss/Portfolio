@@ -2,18 +2,9 @@
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
 
-const skills: string[] = [
-  'React',
-  'Next.js',
-  'Java',
-  'PHP',
-  'Kotlin',
-  'Tailwind',
-  'TypeScript',
-  'REST API',
-  'Laravel',
-  'HTML',
-  'Firebase Authentication',
+const skills = [
+  'React', 'Next.js', 'Java', 'PHP', 'Kotlin', 'Tailwind',
+  'TypeScript', 'REST API', 'Laravel', 'HTML', 'Firebase Authentication',
 ]
 
 const container: Variants = {
@@ -32,27 +23,31 @@ const item: Variants = {
 export default function Skills() {
   return (
     <div>
-      <h4 className="text-sm font-semibold mb-2">Skills</h4>
+      {/* Header diperbesar: text-sm -> text-xl */}
+      <h4 className="text-xl font-bold mb-4">Skills</h4>
 
       <motion.div
         variants={container}
         initial="hidden"
-        // PERBAIKAN BUG: Ganti whileInView jadi animate agar tidak bentrok dengan parent
-        animate="show" 
-        className="flex flex-wrap gap-2"
+        animate="show"
+        className="flex flex-wrap gap-2.5"
       >
         {skills.map((s) => (
           <motion.span
             key={s}
             variants={item}
             className="
-              px-2.5 py-1
-              text-xs
+              px-3.5 py-1.5
+              text-base
+              font-medium
               rounded-full
               border border-white/10
               bg-white/5
               text-slate-600
             "
+            // Perubahan CSS:
+            // 1. px-2.5 py-1 -> px-3.5 py-1.5 (Padding lebih lega)
+            // 2. text-xs -> text-base (Font lebih besar)
           >
             {s}
           </motion.span>
